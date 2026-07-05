@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.srt.dto.TaskRequest;
+import com.srt.dto.TaskResponse;
 import com.srt.todolist.entity.Task;
 import com.srt.todolist.repository.TaskRepository;
 
@@ -15,27 +17,47 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<TaskResponse> getAllTasks() {
+        return taskRepository.findAll()
+                .stream()
+                .map(task -> new TaskResponse(task.getId(), task.getTitle(), task.isCompleted()))
+                .toList();
     }
 
-    public List<Task> getTaskByStatus(boolean completed) {
-        return taskRepository.findByCompleted(completed);
+    public List<TaskResponse> getTaskByStatus(boolean completed) {
+        return taskRepository.findByCompleted(completed)
+                .stream()
+                .map(task -> new TaskResponse(task.getId(), task.getTitle(), task.isCompleted()))
+                .toList();
     }
 
-    public Task createTask(Task task) {
-        task.setCompleted(false);
-        return taskRepository.save(task);
+    public TaskResponse createTask(TaskRequest request) {
+        Task newTask = new Task();
+
+        newTask.setCompleted(false);
+        newTask.setTitle(request.title());
+
+        Task savedTask = taskRepository.save(newTask);
+
+        return new TaskResponse(
+                savedTask.getId(),
+                savedTask.getTitle(),
+                savedTask.isCompleted());
     }
 
-    public Task updateTask(Long id, Task taskDetails) {
+    public TaskResponse updateTask(Long id, TaskRequest request) {
 
         Task updatedTask = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy task với ID: " + id));
 
-        updatedTask.setCompleted(taskDetails.isCompleted());
-        updatedTask.setTitle(taskDetails.getTitle());
-        return taskRepository.save(updatedTask);
+        updatedTask.setCompleted(request.completed());
+        updatedTask.setTitle(request.title());
+
+        taskRepository.save(updatedTask);
+        return new TaskResponse(
+                updatedTask.getId(),
+                updatedTask.getTitle(),
+                updatedTask.isCompleted());
     }
 
     public void deleteTask(Long id) {
