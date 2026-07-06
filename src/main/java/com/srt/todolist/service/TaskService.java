@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.srt.dto.TaskRequest;
 import com.srt.dto.TaskResponse;
+import com.srt.exception.ResourceNotFoundException;
 import com.srt.todolist.entity.Task;
 import com.srt.todolist.repository.TaskRepository;
 
@@ -48,7 +49,7 @@ public class TaskService {
     public TaskResponse updateTask(Long id, TaskRequest request) {
 
         Task updatedTask = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy task với ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy task với ID: " + id));
 
         updatedTask.setCompleted(request.completed());
         updatedTask.setTitle(request.title());
