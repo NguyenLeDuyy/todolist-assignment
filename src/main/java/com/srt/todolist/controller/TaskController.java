@@ -3,7 +3,6 @@ package com.srt.todolist.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.srt.dto.TaskRequest;
 import com.srt.dto.TaskResponse;
-import com.srt.todolist.entity.Task;
 import com.srt.todolist.service.TaskService;
 
 import jakarta.validation.Valid;
