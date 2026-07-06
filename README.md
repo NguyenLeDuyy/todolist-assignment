@@ -9,6 +9,7 @@
 - Lombok, validation, Mockito, AssertJ
 
 ## Cấu trúc project
+```text
 src/
 ├── main/
 │   ├── java/com/srt/
@@ -20,12 +21,15 @@ src/
 │   │       ├── repository  # Spring Data JPA repository
 │   │       └── service     # Business logic
 └── test/java/com/srt/todolist/service   # Unit test tầng service
+```
 
 ## Cách chạy dự án
 
 ## Chạy bằng Docker
+```bash
 docker build -t todolist .
 docker run --rm -p 8080:8080 todolist
+```
 Mở http://localhost:8080
 
 ### Yêu cầu
