@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.srt.dto.TaskRequest;
-import com.srt.dto.TaskResponse;
+import com.srt.todolist.dto.TaskRequest;
+import com.srt.todolist.dto.TaskResponse;
 import com.srt.todolist.service.TaskService;
 
 import jakarta.validation.Valid;

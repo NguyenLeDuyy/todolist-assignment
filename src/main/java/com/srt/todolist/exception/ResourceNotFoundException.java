@@ -1,4 +1,4 @@
-package com.srt.exception;
+package com.srt.todolist.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

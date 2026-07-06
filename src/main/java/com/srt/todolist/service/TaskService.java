@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.srt.dto.TaskRequest;
-import com.srt.dto.TaskResponse;
-import com.srt.exception.ResourceNotFoundException;
+import com.srt.todolist.dto.TaskRequest;
+import com.srt.todolist.dto.TaskResponse;
 import com.srt.todolist.entity.Task;
+import com.srt.todolist.exception.ResourceNotFoundException;
 import com.srt.todolist.repository.TaskRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -51,7 +51,7 @@ public class TaskService {
         Task updatedTask = taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy task với ID: " + id));
 
-        updatedTask.setCompleted(request.completed());
+        updatedTask.setCompleted(Boolean.TRUE.equals(request.completed()));
         updatedTask.setTitle(request.title());
 
         taskRepository.save(updatedTask);
@@ -63,7 +63,7 @@ public class TaskService {
 
     public void deleteTask(Long id) {
         Task deletedTask = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy task với ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy task với ID: " + id));
         taskRepository.delete(deletedTask);
     }
 }

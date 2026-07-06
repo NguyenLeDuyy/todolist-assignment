@@ -56,6 +56,5 @@ H2 Console (xem dữ liệu trực tiếp): http://localhost:8080/h2-console
 - Username: sa, Password: (để trống)
 
 ## Ghi chú / Giới hạn hiện tại
-- Chưa có giao diện web (đang dùng REST API thuần, test qua Postman/curl)
 - Chưa có phân trang (dữ liệu test ít, chưa cần thiết ở scope này)
 - Chưa deploy online

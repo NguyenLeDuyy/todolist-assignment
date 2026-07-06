@@ -1,7 +1,7 @@
 package com.srt.todolist.service;
 
-import com.srt.dto.TaskRequest;
-import com.srt.dto.TaskResponse;
+import com.srt.todolist.dto.TaskRequest;
+import com.srt.todolist.dto.TaskResponse;
 import com.srt.todolist.entity.Task;
 import com.srt.todolist.repository.TaskRepository;
 import org.junit.jupiter.api.BeforeEach;
