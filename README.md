@@ -23,6 +23,11 @@ src/
 
 ## Cách chạy dự án
 
+## Chạy bằng Docker
+docker build -t todolist .
+docker run --rm -p 8080:8080 todolist
+Mở http://localhost:8080
+
 ### Yêu cầu
 - Java 21+
 
@@ -44,16 +49,6 @@ Mở trình duyệt tại: http://localhost:8080
 | POST | /api/tasks | Tạo mới công việc |
 | PUT | /api/tasks/{id} | Chỉnh sửa công việc |
 | DELETE | /api/tasks/{id} | Xóa công việc |
-
-## Test thử API (chưa có giao diện web)
-Dùng Postman hoặc curl để gọi các endpoint ở trên. Ví dụ:
-\`\`\`bash
-curl -X POST http://localhost:8080/api/tasks -H "Content-Type: application/json" -d "{\"title\":\"Học Spring Boot\"}"
-\`\`\`
-
-H2 Console (xem dữ liệu trực tiếp): http://localhost:8080/h2-console
-- JDBC URL: jdbc:h2:mem:todolistdb
-- Username: sa, Password: (để trống)
 
 ## Ghi chú / Giới hạn hiện tại
 - Chưa có phân trang (dữ liệu test ít, chưa cần thiết ở scope này)
